@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <th scope="col">Name</th>
+            <th scope="col">Bought</th>
+            <th scope="col">Unit ($)</th>
+            <th scope="col">Total ($)</th>
+        </thead>
+        <tbody>
+            {% for key, value in user_hold.items() %}
+                <tr>
+                    <td scope="row">{{ value['name'].upper() }}</td>
+                    <td>{{ value['quantity'] }}</td>
+                    <td>{{ value['price_now'] | usd }}</td>
+                    <td>{{ (value['price_now'] * value['quantity']) | usd}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Cash: {{ cash | usd }} </h3>
+{% endblock %}

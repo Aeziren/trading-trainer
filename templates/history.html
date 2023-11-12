@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Qtt.</th>
+            <th>Price</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            {% for operation in transactions %}
+                <tr>
+                    <th>{{ operation['symbol'] }}</th>
+                    <td>{{ operation['type'].upper() }}</td>
+                    <td>{{ operation['quantity'] }}</td>
+                    <td>{{ operation['price'] | usd }}</td>
+                    <td>{{ operation['date'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
